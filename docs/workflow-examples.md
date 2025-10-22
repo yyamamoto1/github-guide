@@ -1,11 +1,13 @@
-# 実践ワークフロー例
+# 📋 実践ワークフロー例
+**AI Project Manager #11 担当領域**
 
-Git/GitHubを使った実務での作業フローを、具体的なコマンドとともに解説します。
+**2025年最新版 - Git/GitHubを使った実務での作業フローを、具体的なコマンドとともに解説**
 
 ---
 
 ## 📑 目次
 
+### 基本ワークフロー
 1. [個人開発フロー](#1-個人開発フロー)
 2. [チーム開発フロー（Feature Branch）](#2-チーム開発フローfeature-branch)
 3. [GitHub Flowフロー](#3-github-flowフロー)
@@ -14,6 +16,15 @@ Git/GitHubを使った実務での作業フローを、具体的なコマンド�
 6. [Issue駆動開発フロー](#6-issue駆動開発フロー)
 7. [ホットフィックスフロー](#7-ホットフィックスフロー)
 8. [リリースフロー](#8-リリースフロー)
+
+### 2025年版: モダン開発フロー
+9. [アジャイル開発フロー](#9-アジャイル開発フロー)
+10. [DevOps統合フロー](#10-devops統合フロー)
+11. [リモートワーク対応フロー](#11-リモートワーク対応フロー)
+12. [AI支援開発フロー](#12-ai支援開発フロー)
+13. [セキュリティファースト開発フロー](#13-セキュリティファースト開発フロー)
+14. [マイクロサービス開発フロー](#14-マイクロサービス開発フロー)
+15. [継続的デプロイメントフロー](#15-継続的デプロイメントフロー)
 
 ---
 
@@ -1074,13 +1085,564 @@ update files
 
 ---
 
+## 9. アジャイル開発フロー
+
+スプリントベースの反復開発フロー。
+
+### 9.1 スプリント開始時のセットアップ
+
+```bash
+# スプリントブランチ作成
+git checkout main
+git pull origin main
+git checkout -b sprint/2025-Q1-S3
+
+# スプリント計画をCommit
+echo "Sprint 2025-Q1-S3 Planning" > SPRINT_PLANNING.md
+git add SPRINT_PLANNING.md
+git commit -m "docs: Add sprint 2025-Q1-S3 planning"
+git push -u origin sprint/2025-Q1-S3
+```
+
+### 9.2 ユーザーストーリー開発
+
+```bash
+# ユーザーストーリーブランチ作成
+git checkout sprint/2025-Q1-S3
+git checkout -b feature/user-story-123
+
+# 開発・テスト・コミット
+git add .
+git commit -m "feat: implement user story #123 - user profile management
+
+- Add user profile component
+- Implement profile update API
+- Add unit tests for profile service
+- Add integration tests
+
+Resolves #123"
+
+# スプリントブランチにマージ
+git checkout sprint/2025-Q1-S3
+git merge feature/user-story-123
+git push origin sprint/2025-Q1-S3
+```
+
+### 9.3 スプリントレビュー・リリース
+
+```bash
+# mainへのマージ（スプリント終了時）
+git checkout main
+git merge sprint/2025-Q1-S3
+git tag -a v2025.1.3 -m "Sprint 2025-Q1-S3 Release"
+git push origin main --tags
+```
+
+---
+
+## 10. DevOps統合フロー
+
+CI/CD、インフラ管理、モニタリングを統合した開発フロー。
+
+### 10.1 Infrastructure as Code (IaC)
+
+```bash
+# インフラ変更用ブランチ
+git checkout -b infra/add-monitoring
+
+# Terraformファイル更新
+# terraform/, docker-compose.yml, k8s/ 等を編集
+
+git add terraform/
+git commit -m "infra: add monitoring stack with Prometheus and Grafana
+
+- Add Prometheus configuration
+- Add Grafana dashboards
+- Update Kubernetes manifests
+- Add health check endpoints
+
+Infrastructure Changes:
+- New monitoring namespace
+- Persistent volumes for metrics
+- Service discovery configuration"
+
+# Pull Request作成（自動CI/CDトリガー）
+git push -u origin infra/add-monitoring
+```
+
+### 10.2 デプロイ戦略
+
+```yaml
+# .github/workflows/deploy.yml の例
+name: Deploy to Production
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Blue-Green Deployment
+        run: |
+          # Blue-Green deployment logic
+          kubectl apply -f k8s/blue/
+          kubectl wait --for=condition=ready pod -l app=myapp-blue
+          kubectl patch service myapp -p '{"spec":{"selector":{"version":"blue"}}}'
+```
+
+### 10.3 モニタリング・アラート
+
+```bash
+# アラート設定の更新
+git checkout -b monitoring/update-alerts
+
+# Prometheus alerting rules 更新
+# Grafana dashboard 更新
+# アラート通知設定 更新
+
+git add monitoring/
+git commit -m "monitoring: update critical alerts for production
+
+- Add memory usage alerts
+- Update response time thresholds  
+- Configure Slack notifications
+- Add runbook links to alerts"
+
+git push -u origin monitoring/update-alerts
+```
+
+---
+
+## 11. リモートワーク対応フロー
+
+分散チーム開発に最適化されたワークフロー。
+
+### 11.1 非同期コラボレーション
+
+```bash
+# 作業開始時の同期
+git checkout main
+git pull origin main
+
+# 作業状況を明確に記録
+git checkout -b feature/async-work-item
+echo "## Work Progress for $(date)" >> WORK_LOG.md
+echo "- Starting work on user authentication" >> WORK_LOG.md
+git add WORK_LOG.md
+git commit -m "docs: start work on user authentication feature"
+git push -u origin feature/async-work-item
+```
+
+### 11.2 Draft Pull Request活用
+
+```bash
+# 作業途中でもDraft PRを作成
+# GitHub CLIを使用
+gh pr create --draft \
+  --title "WIP: User authentication feature" \
+  --body "## Progress
+- ✅ Set up authentication middleware
+- ⏳ Working on JWT validation
+- ⏸️ TODO: Add tests and documentation
+
+## Questions for Review
+- Should we use RS256 or HS256 for JWT?
+- Any preferences for session management?
+
+## Timeline
+Expected completion: End of this week"
+```
+
+### 11.3 ペアプログラミング・コードレビュー
+
+```bash
+# ペアプログラミングセッション記録
+git commit -m "feat: implement JWT authentication
+
+Co-authored-by: Partner Name <partner@email.com>
+
+Pair programming session:
+- Implemented JWT token generation
+- Added middleware for token validation
+- Discussed error handling strategies
+- Reviewed security best practices"
+```
+
+---
+
+## 12. AI支援開発フロー
+
+GitHub Copilot、ChatGPT、その他AIツールを活用した効率的開発フロー。
+
+### 12.1 AI支援コード生成
+
+```bash
+# AIで生成したコードのレビュープロセス
+git checkout -b feature/ai-assisted-feature
+
+# 1. AI promptとレスポンスを記録
+echo "AI Prompt: Generate a React component for user profile" > AI_GENERATION_LOG.md
+echo "Tool: GitHub Copilot" >> AI_GENERATION_LOG.md
+echo "Generated: UserProfile.tsx" >> AI_GENERATION_LOG.md
+
+# 2. 生成されたコードをレビュー・修正
+# 3. テスト追加
+# 4. ドキュメント更新
+
+git add .
+git commit -m "feat: add user profile component
+
+Generated with GitHub Copilot assistance:
+- Base component structure
+- Props interface definition
+- Basic styling
+
+Manual additions:
+- Comprehensive error handling
+- Accessibility features
+- Unit tests
+- Integration tests
+
+AI-Review-Required: true"
+```
+
+### 12.2 AIコードレビュー統合
+
+```yaml
+# .github/workflows/ai-review.yml
+name: AI Code Review
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  ai-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: AI Security Review
+        uses: github/super-linter@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: AI Performance Analysis
+        run: |
+          # AI-powered performance analysis
+          echo "Running AI performance analysis..."
+```
+
+### 12.3 AIドキュメント生成
+
+```bash
+# AIでドキュメント生成・更新
+git checkout -b docs/ai-generated-api-docs
+
+# AI promptを使ってAPI documentation生成
+# 例: "Generate OpenAPI documentation for this Express.js API"
+
+git add docs/api.md
+git commit -m "docs: generate API documentation
+
+Generated with AI assistance:
+- OpenAPI 3.0 specification
+- Endpoint descriptions
+- Request/response examples
+- Error handling documentation
+
+Manual review completed:
+- Verified accuracy
+- Added security considerations
+- Updated authentication details"
+```
+
+---
+
+## 13. セキュリティファースト開発フロー
+
+セキュリティを開発プロセスの中心に置いたワークフロー。
+
+### 13.1 セキュリティチェック統合
+
+```bash
+# セキュリティブランチでの開発
+git checkout -b security/implement-oauth2
+
+# セキュリティ要件を明文化
+echo "Security Requirements:" > SECURITY_REQUIREMENTS.md
+echo "- OAuth 2.0 with PKCE" >> SECURITY_REQUIREMENTS.md
+echo "- Rate limiting: 100 req/min" >> SECURITY_REQUIREMENTS.md
+echo "- Input validation on all endpoints" >> SECURITY_REQUIREMENTS.md
+
+git add SECURITY_REQUIREMENTS.md
+git commit -m "security: define OAuth2 implementation requirements"
+```
+
+### 13.2 自動セキュリティスキャン
+
+```yaml
+# .github/workflows/security-scan.yml
+name: Security Scan
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SAST Scan
+        uses: github/codeql-action/init@v2
+      - name: Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+      - name: Container Security Scan
+        uses: aquasecurity/trivy-action@master
+```
+
+### 13.3 セキュリティ監査ログ
+
+```bash
+# セキュリティ変更のトラッキング
+git commit -m "security: implement password hashing with bcrypt
+
+Security Impact Analysis:
+- Passwords now hashed with bcrypt (cost: 12)
+- Removed plaintext password storage
+- Added password strength validation
+- Implemented secure session management
+
+Compliance:
+- OWASP Authentication Cheat Sheet ✅
+- NIST Password Guidelines ✅
+- GDPR data protection requirements ✅
+
+Penetration Testing: Required
+Security Review: @security-team"
+```
+
+---
+
+## 14. マイクロサービス開発フロー
+
+複数サービス間の依存関係を管理する開発フロー。
+
+### 14.1 サービス間連携テスト
+
+```bash
+# マイクロサービス統合ブランチ
+git checkout -b integration/user-order-services
+
+# Docker Compose for integration testing
+echo "version: '3.8'" > docker-compose.integration.yml
+echo "services:" >> docker-compose.integration.yml
+echo "  user-service:" >> docker-compose.integration.yml
+echo "    build: ./user-service" >> docker-compose.integration.yml
+echo "  order-service:" >> docker-compose.integration.yml
+echo "    build: ./order-service" >> docker-compose.integration.yml
+
+git add docker-compose.integration.yml
+git commit -m "integration: add user-order services integration test
+
+Changes:
+- Add integration test environment
+- Configure service mesh communication
+- Add contract testing with Pact
+- Implement distributed tracing
+
+Testing Strategy:
+- Unit tests: Each service
+- Integration tests: Service pairs
+- E2E tests: Full user journey
+- Contract tests: API compatibility"
+```
+
+### 14.2 API契約管理
+
+```bash
+# API契約変更管理
+git checkout -b api/update-user-service-v2
+
+# OpenAPI specification更新
+# Contract testing設定更新
+# Backward compatibility確認
+
+git add api-specs/
+git commit -m "api: update user service API to v2.1
+
+Breaking Changes: None
+New Features:
+- Add user preferences endpoint
+- Add batch user update
+- Add user activity logging
+
+Backward Compatibility:
+- v2.0 endpoints maintained
+- New optional fields only
+- Deprecation warnings added
+
+Contract Testing:
+- All existing contracts pass ✅
+- New contracts added for v2.1 ✅
+- Consumer impact analysis completed ✅"
+```
+
+---
+
+## 15. 継続的デプロイメントフロー
+
+完全自動化されたデプロイメントパイプライン。
+
+### 15.1 環境別ブランチ戦略
+
+```bash
+# 環境ごとのプロモーション
+git checkout main
+git pull origin main
+
+# Development環境へのデプロイ（自動）
+git push origin main  # → development環境に自動デプロイ
+
+# Staging環境へのプロモーション
+git checkout staging
+git merge main
+git push origin staging  # → staging環境に自動デプロイ
+
+# Production環境へのプロモーション（手動承認）
+git checkout production
+git merge staging
+git tag -a release-$(date +%Y%m%d-%H%M%S) -m "Production release $(date)"
+git push origin production --tags  # → production環境に自動デプロイ（承認後）
+```
+
+### 15.2 カナリアデプロイメント
+
+```yaml
+# .github/workflows/canary-deploy.yml
+name: Canary Deployment
+on:
+  push:
+    branches: [production]
+
+jobs:
+  canary-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Canary (5% traffic)
+        run: |
+          kubectl apply -f k8s/canary/
+          kubectl patch service myapp -p '{"spec":{"selector":{"version":"canary"}}}'
+          
+      - name: Monitor Canary Metrics
+        run: |
+          # 5分間メトリクス監視
+          sleep 300
+          
+      - name: Promote to Full Production
+        if: success()
+        run: |
+          kubectl patch service myapp -p '{"spec":{"selector":{"version":"stable"}}}'
+          kubectl scale deployment myapp-canary --replicas=0
+```
+
+### 15.3 ロールバック戦略
+
+```bash
+# 緊急ロールバック
+git checkout production
+git revert HEAD --no-edit
+git push origin production
+
+# 自動ロールバック (監視システム連携)
+git commit -m "revert: emergency rollback due to high error rate
+
+Rollback Trigger:
+- Error rate > 5% for 2 minutes
+- Response time > 2s for 5 minutes
+- Health check failures
+
+Rollback Actions:
+- Revert to previous stable version
+- Database migrations: No rollback needed
+- Cache: Cleared
+- CDN: Purged
+
+Post-Rollback:
+- Incident report: #INC-2025-001
+- Root cause analysis: Scheduled
+- Fix implementation: In progress"
+```
+
+---
+
+## 🎯 2025年版 ワークフロー選択ガイド
+
+| プロジェクト種類 | 推奨フロー | 理由 |
+|----------------|----------|------|
+| 個人プロジェクト | 個人開発フロー + AI支援 | シンプルで効率的 |
+| スタートアップ | GitHub Flow + DevOps統合 | 迅速な開発・デプロイ |
+| アジャイルチーム | アジャイル開発フロー | スプリントベース開発 |
+| リモートチーム | リモートワーク対応フロー | 非同期コラボレーション |
+| エンタープライズ | セキュリティファースト + 継続的デプロイ | 厳格な管理・自動化 |
+| マイクロサービス | マイクロサービス開発フロー | サービス間連携管理 |
+| オープンソース | OSS貢献フロー + AI支援 | フォークベース + 効率化 |
+
+---
+
+## 📝 2025年版 ベストプラクティス
+
+### AI時代のコミットメッセージ
+
+**AI支援を明記:**
+```
+feat: implement user authentication with AI assistance
+
+Generated with GitHub Copilot:
+- Basic authentication flow
+- JWT token handling
+- Password validation
+
+Manual enhancements:
+- Security hardening
+- Error handling
+- Unit tests
+- Documentation
+
+Co-authored-by: GitHub Copilot <copilot@github.com>
+```
+
+### セキュリティ重視のPR
+
+**セキュリティチェックリスト:**
+- [ ] 入力値検証実装済み
+- [ ] 認証・認可チェック済み
+- [ ] シークレット情報ハードコードなし
+- [ ] 依存関係脆弱性チェック済み
+- [ ] SAST/DAST スキャン実行済み
+
+### リモートワーク対応
+
+**非同期レビューのポイント:**
+- 詳細な変更説明
+- スクリーンショット・デモ動画
+- タイムゾーンを考慮したレビュー期限
+- 明確な質問・フィードバック
+
+---
+
 ## 🔗 関連ドキュメント
 
 - [Git基本コマンド集](./git-commands.md)
 - [GitHubメニュー完全ガイド](./github-ui-guide.md)
 - [ブランチ戦略](./branching-strategies.md)
 - [Pull Request・Code Review](./pull-request-guide.md)
+- [GitHub Actions入門](./github-actions.md)
+- [トラブルシューティング](./troubleshooting.md)
 
 ---
 
-**最終更新**: 2025-10-13
+**📈 AI Project Manager による最終更新**: 2025-10-22
+**バージョン**: 2.0.0 - Modern Development Workflows Edition

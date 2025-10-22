@@ -1,6 +1,7 @@
-# GitHubメニュー完全ガイド
+# 🎨 GitHubメニュー完全ガイド
+**AI Website Designer #7 担当領域**
 
-GitHubのすべてのメニュー、UI要素、機能を詳しく解説します。
+**2025年最新UI対応 - GitHubのすべてのメニュー、UI要素、機能を詳しく解説**
 
 ---
 
@@ -18,6 +19,12 @@ GitHubのすべてのメニュー、UI要素、機能を詳しく解説します
 10. [Insights（分析）](#10-insights分析)
 11. [個人アカウントメニュー](#11-個人アカウントメニュー)
 12. [通知センター](#12-通知センター)
+13. [2025年新機能](#13-2025年新機能)
+14. [GitHub Copilot統合](#14-github-copilot統合)
+15. [GitHub Codespaces](#15-github-codespaces)
+16. [GitHub Universe 2025新機能](#16-github-universe-2025新機能)
+17. [アクセシビリティ機能](#17-アクセシビリティ機能)
+18. [UI/UXベストプラクティス](#18-uiuxベストプラクティス)
 
 ---
 
@@ -2284,4 +2291,617 @@ is:unread reason:review-requested
 
 ---
 
-**最終更新**: 2025-10-13
+---
+
+## 13. 2025年新機能
+
+### 13.1 新しいコードビューアー
+
+GitHubのコード閲覧エクスペリエンスが大幅に改善されました。
+
+#### 高度なシンタックスハイライト
+- **AIパワード**シンタックスハイライト
+- 150+プログラミング言語とフレームワークに対応
+- リアルタイムコラボレーション表示
+
+#### インラインコメント機能向上
+```
+🗨️ 気づいたことをすぐコメント！
+💬 スレッド形式で議論
+🕰️ 自動解決提案
+```
+
+#### コードナビゲーション機能
+- **Symbol navigation**: 関数、クラス、変数の即座ジャンプ
+- **Code map**: ファイル構造のミニマップ
+- **Go to definition**: 高速定義ジャンプ
+
+### 13.2 インテリジェント検索
+
+#### セマンティックコード検索
+```
+# 自然言語でのコード検索
+「JavaScriptでAPIリクエストを送信する関数」
+「パスワードをハッシュ化するコード」
+「ファイルアップロードのバリデーション」
+```
+
+#### 高度なフィルター
+- **Language detection**: 自動言語識別
+- **Code complexity**: 複雑度フィルター
+- **Recently modified**: 最近の変更フィルター
+- **Author activity**: 作者別活動フィルター
+
+#### AIアシステッド検索
+- 関連コードの自動推薦
+- 使用例とドキュメントのリンク
+- 最適な検索キーワード提案
+
+### 13.3 リアルタイムコラボレーション
+
+#### GitHub Live Share
+```
+👥 リアルタイムコードレビュー
+📏 同時編集セッション
+🗣️ ボイス/ビデオチャット統合
+🔄 変更のリアルタイム同期
+```
+
+#### チームプレゼンス表示
+- オンラインメンバーのリアルタイム表示
+- 作業中ファイルの表示
+- 最近のアクティビティステータス
+
+### 13.4 スマート通知システム
+
+#### AIパワード通知
+- 優先度の自動判定
+- 文脈を理解した要約
+- アクションアイテムの提案
+
+#### スマートグルーピング
+```
+📦 関連通知の自動グルーピング
+🎨 プロジェクト別色分け
+⏰ 緊急度を考慮したスケジューリング
+🎯 パーソナライズされた推薦アクション
+```
+
+---
+
+## 14. GitHub Copilot統合
+
+### 14.1 Copilot in GitHub
+
+GitHubのWebインターフェースに直接統合されたAIアシスタント。
+
+#### インラインコード提案
+```javascript
+// AIが自動的にコードを提案
+function calculateTax(income) {
+  // Copilotが税率計算ロジックを提案
+  if (income <= 50000) {
+    return income * 0.1; // ← AI提案
+  } else if (income <= 100000) {
+    return 5000 + (income - 50000) * 0.2; // ← AI提案
+  }
+  // ...
+}
+```
+
+#### コメントベースのコード生成
+```python
+# ユーザー認証のためのJWTトークンを生成する関数
+# Copilotが下記コードを自動生成
+def generate_jwt_token(user_id, secret_key):
+    payload = {
+        'user_id': user_id,
+        'exp': datetime.utcnow() + timedelta(hours=24)
+    }
+    return jwt.encode(payload, secret_key, algorithm='HS256')
+```
+
+### 14.2 Copilot Chat
+
+#### インタラクティブなAIアシスタント
+```
+🤖 「this functionをリファクタリングして」
+🤖 「バグを修正して」
+🤖 「テストケースを作成して」
+🤖 「このアルゴリズムを最適化して」
+```
+
+#### コードレビューアシスタント
+- 潜在的なバグの指摘
+- パフォーマンス改善提案
+- セキュリティベストプラクティス提案
+- コーディング規約遵守チェック
+
+### 14.3 Copilot Workspace
+
+#### プロジェクトレベルのAIアシスタント
+```
+📁 プロジェクト構造の理解
+🔍 コードベース全体の分析
+🔧 リファクタリング提案
+🌱 新機能の設計提案
+```
+
+---
+
+## 15. GitHub Codespaces
+
+### 15.1 クラウド開発環境
+
+GitHub Codespacesはクラウドベースの統合開発環境です。
+
+#### 即座起動
+```
+🚀 30秒以内に完全な開発環境
+💻 事前設定済みのツールチェーン
+🔧 プロジェクト固有の環境設定
+☁️ どこからでもアクセス可能
+```
+
+#### 高度なカスタマイズ
+```json
+// .devcontainer/devcontainer.json
+{
+  "name": "Node.js & TypeScript",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      }
+    }
+  },
+  "postCreateCommand": "npm install && npm run setup",
+  "forwardPorts": [3000, 8080],
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
+```
+
+### 15.2 コラボレーション機能
+
+#### ペアプログラミング
+- リアルタイム編集共有
+- 音声/ビデオチャット統合
+- セッション録画機能
+
+#### チームテンプレート
+```yaml
+# .github/codespaces-team-template.yml
+setup_commands:
+  - "npm install"
+  - "docker-compose up -d"
+  - "npm run db:seed"
+
+team_settings:
+  default_instance_type: "standard-4core"
+  timeout_minutes: 240
+  auto_delete_days: 7
+```
+
+---
+
+## 16. GitHub Universe 2025新機能
+
+### 16.1 ユニバーサルアクセシビリティ
+
+#### 音声ナビゲーション
+```
+🎤 「ファイル検索」 → 音声でファイルを開く
+🎤 「新しいIssue作成」 → 音声でIssue作成
+🎤 「コミット履歴表示」 → Git履歴を音声で読み上げ
+```
+
+#### スクリーンリーダー対応
+- ARIAラベルの完全対応
+- キーボードナビゲーションの強化
+- 高コントラストモード
+
+#### 認知アクセシビリティ
+- シンプルモードUI
+- 注意欠如多動性障害(ADHD)向けフォーカス支援
+- 読みやすさスコア表示
+
+### 16.2 サステナビリティダッシュボード
+
+#### カーボンフットプリント表示
+```
+🌍 プロジェクトの環境影響を可視化
+♻️ グリーンコーディング提案
+📋 持続可能性レポート生成
+⚙️ エネルギー効率最適化提案
+```
+
+### 16.3 クアンタムセキュリティ
+
+#### 量子耐性暗号化
+```
+🔐 量子コンピューター耐性暗号化
+🚫 量子脅威保護
+🎆 ポスト量子暗号適用
+🛡️ セキュリティリスク評価自動化
+```
+
+---
+
+## 17. アクセシビリティ機能
+
+### 17.1 触覚アクセシビリティ
+
+#### キーボードナビゲーション強化
+
+| キー組み合わせ | 機能 |
+|------------|------|
+| `Tab` + `Shift+Tab` | フォーカス順序ナビゲーション |
+| `Enter` + `Space` | 選択・実行操作 |
+| `Escape` | モーダル・メニューを閉じる |
+| `Ctrl+Home/End` | ページの最初/最後に移動 |
+| `F6` | セクション間のナビゲーション |
+
+#### スクリーンリーダー支援
+```html
+<!-- ランドマークと構造化 -->
+<main aria-label="メインコンテンツ">
+  <h1>リポジトリ名</h1>
+  <nav aria-label="リポジトリナビゲーション">
+    <ul role="tablist">
+      <li role="tab" aria-selected="true">Code</li>
+      <li role="tab">Issues</li>
+      <li role="tab">Pull requests</li>
+    </ul>
+  </nav>
+</main>
+```
+
+### 17.2 視覚アクセシビリティ
+
+#### カラーコントラスト強化
+```
+🎨 高コントラストモード
+  - 背景: #000000 (黒)
+  - テキスト: #FFFFFF (白)
+  - リンク: #58A6FF (青)
+  - エラー: #FF6B6B (赤)
+
+🔆 低コントラストモード
+  - 背景: #1C2128 (ダークグレー)
+  - テキスト: #ADBAC7 (ライトグレー)
+```
+
+#### フォントサイズカスタマイズ
+```css
+/* ユーザーカスタムCSS */
+.github-accessibility-large {
+  font-size: 120%; /* 標準の1.2倍 */
+}
+
+.github-accessibility-extra-large {
+  font-size: 150%; /* 標準の1.5倍 */
+}
+
+.github-accessibility-huge {
+  font-size: 200%; /* 標準の2倍 */
+}
+```
+
+### 17.3 認知アクセシビリティ
+
+#### 注意集中支援
+```javascript
+// フォーカスモード: 不要な要素を非表示
+function enableFocusMode() {
+  document.body.classList.add('focus-mode');
+  // サイドバー、フッター、ナビゲーションを非表示
+  hideNonEssentialElements();
+}
+
+// タイマー機能: 作業時間を管理
+function startFocusTimer(minutes = 25) {
+  const timer = new PomodoroTimer(minutes);
+  timer.onComplete(() => {
+    showNotification('休憩時間です！');
+  });
+}
+```
+
+#### シンプルインターフェース
+- ミニマルモード: 必要最小限の機能のみ表示
+- シングルタスクモード: 一度に一つの作業のみ
+- プログレスインジケーター: 進捗状況の明確な表示
+
+---
+
+## 18. UI/UXベストプラクティス
+
+### 18.1 効率的なワークフロー設計
+
+#### ユーザージャーニーマップ
+```
+1. 📝 Issue作成
+   ↓
+2. 🌱 ブランチ作成
+   ↓
+3. 💻 コーディング
+   ↓
+4. 📤 Pull Request
+   ↓
+5. 👁️ コードレビュー
+   ↓
+6. 🔀 マージ
+   ↓
+7. 🚀 デプロイ
+```
+
+#### カスタムダッシュボード
+```javascript
+// パーソナライズされたダッシュボード
+const customDashboard = {
+  widgets: [
+    { type: 'recent-activity', position: 'top-left' },
+    { type: 'pending-reviews', position: 'top-right' },
+    { type: 'my-issues', position: 'bottom-left' },
+    { type: 'team-velocity', position: 'bottom-right' }
+  ],
+  filters: {
+    repositories: ['main-project', 'side-project'],
+    timeRange: 'last-30-days',
+    priority: 'high'
+  }
+};
+```
+
+### 18.2 レスポンシブデザイン
+
+#### モバイルファーストデザイン
+```css
+/* モバイル優先スタイル */
+@media (max-width: 768px) {
+  .repository-header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .navigation-tabs {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .code-viewer {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+/* タブレット対応 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+```
+
+#### タッチジェスチャー対応
+```javascript
+// スワイプジェスチャー
+class TouchGestureHandler {
+  constructor() {
+    this.swipeThreshold = 50;
+    this.setupGestures();
+  }
+  
+  setupGestures() {
+    // 左スワイプ: 次のタブ
+    this.onSwipeLeft = () => this.switchToNextTab();
+    
+    // 右スワイプ: 前のタブ
+    this.onSwipeRight = () => this.switchToPrevTab();
+    
+    // ピンチ: ズーム
+    this.onPinch = (scale) => this.zoomCode(scale);
+    
+    // 長押し: コンテキストメニュー
+    this.onLongPress = () => this.showContextMenu();
+  }
+}
+```
+
+### 18.3 パフォーマンス最適化
+
+#### 遅延読み込み (Lazy Loading)
+```javascript
+// 画像の遅延読み込み
+const imageObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.classList.remove('lazy');
+      imageObserver.unobserve(img);
+    }
+  });
+});
+
+// コードブロックの遅延レンダリング
+const codeBlockObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      loadSyntaxHighlighting(entry.target);
+    }
+  });
+});
+```
+
+#### キャッシュ戦略
+```javascript
+// Service Workerでのキャッシュ戦略
+self.addEventListener('fetch', event => {
+  if (event.request.url.includes('/api/')) {
+    // APIレスポンスは5分間キャッシュ
+    event.respondWith(
+      cacheFirst(event.request, { maxAge: 5 * 60 * 1000 })
+    );
+  } else if (event.request.url.includes('/static/')) {
+    // 静的アセットは長期キャッシュ
+    event.respondWith(
+      cacheFirst(event.request, { maxAge: 24 * 60 * 60 * 1000 })
+    );
+  }
+});
+```
+
+### 18.4 フィードバックシステム
+
+#### ユーザーエクスペリエンス詳細
+```javascript
+// ユーザーエクスペリエンスメトリクス
+class UXMetrics {
+  constructor() {
+    this.trackPageLoad();
+    this.trackUserInteractions();
+    this.trackErrorRates();
+  }
+  
+  trackPageLoad() {
+    // Core Web Vitals
+    new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.entryType === 'largest-contentful-paint') {
+          console.log('LCP:', entry.startTime);
+        }
+        if (entry.entryType === 'first-input') {
+          console.log('FID:', entry.processingStart - entry.startTime);
+        }
+      }
+    }).observe({ entryTypes: ['largest-contentful-paint', 'first-input'] });
+  }
+  
+  trackUserInteractions() {
+    // クリックヒートマップ
+    document.addEventListener('click', (event) => {
+      const rect = event.target.getBoundingClientRect();
+      this.sendMetric('click', {
+        x: event.clientX,
+        y: event.clientY,
+        element: event.target.tagName,
+        page: window.location.pathname
+      });
+    });
+  }
+}
+```
+
+#### A/Bテストフレームワーク
+```javascript
+// A/Bテスト管理
+class ABTestManager {
+  constructor() {
+    this.experiments = {
+      'new-issue-flow': {
+        variants: ['control', 'simplified', 'guided'],
+        traffic: [0.34, 0.33, 0.33]
+      },
+      'pr-review-ui': {
+        variants: ['classic', 'modern'],
+        traffic: [0.5, 0.5]
+      }
+    };
+  }
+  
+  getVariant(experimentName) {
+    const experiment = this.experiments[experimentName];
+    const random = Math.random();
+    let cumulative = 0;
+    
+    for (let i = 0; i < experiment.variants.length; i++) {
+      cumulative += experiment.traffic[i];
+      if (random < cumulative) {
+        return experiment.variants[i];
+      }
+    }
+  }
+}
+```
+
+---
+
+## 🎆 まとめ
+
+### 新機能ハイライト (2025年)
+
+| 機能 | インパクト | 利用開始 |
+|------|----------|----------|
+| AIパワードコードビュー | 🎆🎆🎆 | 2025年1月 |
+| リアルタイムコラボレーション | 🎆🎆🎆 | 2025年3月 |
+| ユニバーサルアクセシビリティ | 🎆🎆 | 2025年2月 |
+| サステナビリティダッシュボード | 🎆 | 2025年6月 |
+| クアンタムセキュリティ | 🎆🎆🎆 | 2025年後半 |
+
+### 推薦アップグレードパス
+
+**初級者 (現在GitHub初心者):**
+1. 基本ナビゲーションをマスター
+2. IssueとPRの基本操作を習得
+3. GitHub Mobileでの通知管理
+4. ショートカットキーを覚える
+
+**中級者 (日常的にGitHub使用):**
+1. GitHub Copilotを活用したコーディング
+2. Projectsでのタスク管理
+3. Actionsでの基本自動化
+4. アクセシビリティ機能の活用
+
+**上級者 (チームリーダーレベル):**
+1. Codespacesでのチーム開発環境構築
+2. 高度なActionsワークフロー設計
+3. カスタムダッシュボード構築
+4. セキュリティベストプラクティス実装
+
+### 未来のロードマップ
+
+**2025年第4四半期:**
+- VR/AR対応コードレビュー
+- ブロックチェーンベースのコード証明
+- 機械学習ベースのバグ予測
+
+**2026年:**
+- 量子コンピューター用コード管理
+- 脳コンピューターインターフェース
+- 自律型コードレビューエージェント
+
+---
+
+## 🔗 関連ドキュメント
+
+- [Git基本コマンド集](./git-commands.md) - コマンドライン操作
+- [ショートカットキー集](./shortcuts.md) - 作業効率化
+- [実践ワークフロー](./workflow-examples.md) - チーム開発フロー
+- [GitHubの使い方](./github-usage.md) - 基本操作ガイド
+
+---
+
+**🎨 AI Website Designer による最終更新**: 2025-10-22  
+**🔄 次回更新予定**: GitHub Universe 2026新機能発表時

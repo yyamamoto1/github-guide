@@ -1,6 +1,7 @@
 # Git基本コマンド集
 
-**Windows/Mac対応 - 実務で使える完全版**
+**📋 Assigned to: AI Engineer**  
+**🚀 2025年最新版 - Windows/Mac対応完全ガイド**
 
 ## 📋 目次
 - [初期設定](#初期設定)
@@ -12,6 +13,10 @@
 - [履歴・差分確認](#履歴差分確認)
 - [タグ操作](#タグ操作)
 - [取り消し・修正](#取り消し修正)
+- [最新Git機能（2025年）](#最新git機能2025年)
+- [GitHub統合機能](#github統合機能)
+- [パフォーマンス最適化](#パフォーマンス最適化)
+- [セキュリティ強化](#セキュリティ強化)
 
 ---
 
@@ -807,4 +812,284 @@ git push
 
 ---
 
-**最終更新**: 2025-10-13
+---
+
+## 最新Git機能（2025年）
+
+### スパースインデックス（Sparse Index）
+
+大規模リポジトリのパフォーマンス向上。
+
+```bash
+# スパースチェックアウト有効化
+git config --global core.sparseCheckout true
+git config --global core.sparseCheckoutCone true
+
+# 特定ディレクトリのみチェックアウト
+echo "src/" > .git/info/sparse-checkout
+echo "docs/" >> .git/info/sparse-checkout
+git read-tree -m -u HEAD
+
+# コマンドでの設定
+git sparse-checkout init --cone
+git sparse-checkout set src docs
+
+# 現在の設定確認
+git sparse-checkout list
+```
+
+### 並列処理の最適化
+
+```bash
+# 並列フェッチ設定（Git 2.39+）
+git config --global fetch.parallel 4
+
+# 並列プッシュ設定
+git config --global push.parallel 4
+
+# インデックス並列処理
+git config --global index.threads 4
+
+# pack処理の並列化
+git config --global pack.threads 4
+```
+
+### 改善されたマージ機能
+
+```bash
+# ORT merge strategy (Git 2.33+で標準)
+git merge --strategy=ort feature-branch
+
+# 3-way merge の改善
+git config --global merge.ort.renameLimit 7000
+
+# コンフリクト解決の改善
+git config --global merge.conflictStyle diff3
+```
+
+### 新しいブランチ操作
+
+```bash
+# ブランチの複製（Git 2.37+）
+git branch --copy old-branch new-branch
+git branch -c old-branch new-branch
+
+# リモートブランチの自動セットアップ
+git config --global push.autoSetupRemote true
+```
+
+### Git Maintenance
+
+```bash
+# 自動メンテナンス設定
+git maintenance start
+
+# メンテナンス設定確認
+git maintenance run --task=gc
+git maintenance run --task=prefetch
+git maintenance run --task=commit-graph
+git maintenance run --task=loose-objects
+git maintenance run --task=incremental-repack
+
+# メンテナンス停止
+git maintenance stop
+```
+
+---
+
+## GitHub統合機能
+
+### GitHub CLI (gh) 統合
+
+```bash
+# GitHub CLI インストール確認
+gh --version
+
+# 認証
+gh auth login
+
+# リポジトリクローン
+gh repo clone username/repository
+
+# Issue操作
+gh issue create --title "Bug Report" --body "Description"
+gh issue list --state open
+gh issue view 123
+
+# Pull Request操作
+gh pr create --title "Feature: Add new component"
+gh pr merge 456 --squash
+gh pr checkout 789
+
+# Gitとの連携
+git config --global alias.pr "!gh pr"
+git config --global alias.issue "!gh issue"
+```
+
+### GitHub Codespaces 対応
+
+```bash
+# Codespaces内での設定
+git config --global codespaces.workspaceInit true
+
+# devcontainer設定の確認
+cat .devcontainer/devcontainer.json
+
+# Codespaces固有の設定
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+### GitHub Actions との連携
+
+```bash
+# Actions内でのGit設定
+git config --global user.name "GitHub Actions"
+git config --global user.email "actions@github.com"
+
+# トークン使用
+git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/owner/repo.git
+```
+
+---
+
+## パフォーマンス最適化
+
+### 大規模リポジトリ向け設定
+
+```bash
+# ファイルシステムモニター（macOS/Windows）
+git config --global core.fsmonitor true
+git config --global core.untrackedCache true
+
+# プリロード設定
+git config --global core.preloadIndex true
+
+# 圧縮レベル調整
+git config --global core.compression 6
+
+# delta圧縮最適化
+git config --global pack.deltaCacheSize 2g
+git config --global pack.packSizeLimit 2g
+git config --global pack.windowMemory 1g
+```
+
+### メモリ使用量最適化
+
+```bash
+# 大きなファイル用設定
+git config --global core.bigFileThreshold 512m
+
+# streaming設定
+git config --global core.streamingThreshold 512m
+
+# バッファサイズ調整
+git config --global http.postBuffer 524288000
+```
+
+### ネットワーク最適化
+
+```bash
+# 並列転送
+git config --global transfer.bundleURI true
+
+# 部分クローン（Git 2.19+）
+git clone --filter=blob:none https://github.com/user/repo.git
+git clone --filter=tree:0 https://github.com/user/repo.git
+
+# 浅いクローン
+git clone --depth 1 https://github.com/user/repo.git
+
+# 必要な時だけダウンロード
+git config --global extensions.partialClone origin
+```
+
+---
+
+## セキュリティ強化
+
+### SSH設定の強化
+
+**Windows (PowerShell):**
+```powershell
+# SSH設定ディレクトリ作成
+mkdir $env:USERPROFILE\.ssh
+
+# SSH鍵生成（Ed25519推奨）
+ssh-keygen -t ed25519 -C "your.email@example.com" -f $env:USERPROFILE\.ssh\id_ed25519
+
+# または RSA 4096bit
+ssh-keygen -t rsa -b 4096 -C "your.email@example.com" -f $env:USERPROFILE\.ssh\id_rsa
+
+# SSH agent 起動
+Get-Service ssh-agent | Set-Service -StartupType Automatic
+Start-Service ssh-agent
+
+# 鍵追加
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+
+# 公開鍵表示
+Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub
+```
+
+**Mac:**
+```bash
+# SSH鍵生成（Ed25519推奨）
+ssh-keygen -t ed25519 -C "your.email@example.com" -f ~/.ssh/id_ed25519
+
+# SSH agent に追加（永続化）
+echo "Host *\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
+
+# 鍵追加
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+
+# 公開鍵表示
+cat ~/.ssh/id_ed25519.pub
+```
+
+### GPG署名の設定
+
+```bash
+# GPG鍵の生成
+gpg --full-generate-key
+
+# 鍵一覧表示
+gpg --list-secret-keys --keyid-format=long
+
+# Git設定
+git config --global user.signingkey YOUR_GPG_KEY_ID
+git config --global commit.gpgsign true
+git config --global tag.gpgsign true
+
+# Windows用GPGプログラム設定
+git config --global gpg.program "C:/Program Files (x86)/GnuPG/bin/gpg.exe"
+
+# Mac用（Homebrew）
+git config --global gpg.program /opt/homebrew/bin/gpg
+```
+
+### セキュリティ設定
+
+```bash
+# 転送プロトコル制限
+git config --global protocol.version 2
+
+# セキュアなURL書き換え
+git config --global url."https://github.com/".insteadOf "git://github.com/"
+git config --global url."https://".insteadOf "git://"
+
+# SSL証明書検証
+git config --global http.sslVerify true
+
+# タイムアウト設定
+git config --global http.timeout 30
+
+# プロキシ設定（企業環境）
+git config --global http.proxy http://proxy.company.com:8080
+git config --global https.proxy https://proxy.company.com:8080
+```
+
+---
+
+**🧑‍💻 AI Engineer による最終更新**: 2025-10-22  
+**🔧 次回更新予定**: 新Git機能リリース時
