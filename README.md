@@ -19,11 +19,19 @@ Git/GitHubの基本から応用まで、実務で使える知識を網羅した�
 - [Issues・Projects活用法](./docs/issues-projects.md)
 - [Pull Request・Code Review](./docs/pull-request-guide.md)
 
+### AI開発ツール連携 🤖 **NEW**
+- [AI開発ツール連携ガイド](./docs/ai-tools-integration.md) - Claude Code, Cursor, GitHub CLI統合
+  - Claude Code: `/init` + ultrathink によるプロジェクト分析
+  - Cursor: AIネイティブエディタでのGit操作
+  - GitHub CLI (gh): コマンドラインからGitHub操作
+  - GitHub Copilot: AIペアプログラミング
+
 ### 実践編
 - [実践ワークフロー](./docs/workflow-examples.md)
 - [ブランチ戦略](./docs/branching-strategies.md)
 - [GitHub Actions入門](./docs/github-actions.md)
 - [トラブルシューティング](./docs/troubleshooting.md)
+- [ハンズオン演習](./docs/hands-on-exercises.md) ⭐ **実践演習**
 
 ### チートシート
 - [Gitコマンド早見表](./cheatsheets/git-commands-cheatsheet.md)
@@ -38,6 +46,7 @@ Git/GitHubの基本から応用まで、実務で使える知識を網羅した�
 - チーム開発に参加する方
 - WindowsとMac両方の環境を使う方
 - ショートカットキーで効率化したい方
+- **AI開発ツール（Claude Code, Cursor, GitHub Copilot）を活用したい方** 🤖 NEW
 
 ---
 
@@ -83,6 +92,14 @@ GitHubの全メニュー・UIを画面キャプチャ付きで解説。
 - チーム開発フロー
 - オープンソースプロジェクト貢献フロー
 - Issue → Branch → PR → Merge の完全な流れ
+
+### 6. AI開発ツール連携ガイド 🤖 NEW
+最新のAI開発ツールとGit/GitHub連携を完全解説。
+- **Claude Code**: `/init` + ultrathinkでプロジェクト全体を深く分析
+- **Cursor**: AIネイティブエディタでのGit操作・コミットメッセージ自動生成
+- **GitHub CLI (gh)**: コマンドラインからIssue, PR, Actions操作
+- **GitHub Copilot**: AIペアプログラミングとGit連携
+- 統合ワークフロー・CI/CD設定例
 
 ---
 
@@ -246,5 +263,5 @@ Gitを使いこなせるようになると、開発効率が劇的に向上し�
 
 ---
 
-**最終更新**: 2025-10-22
-**バージョン**: 1.0.0
+**最終更新**: 2025-12-30
+**バージョン**: 2.0.0 - AI開発ツール連携対応
